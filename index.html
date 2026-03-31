@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LIDA — Lighting Inspection & Diagnostic App</title>
     <meta name="description" content="LIDA ile akıllı telefonunuzun kamerasını profesyonel bir ışık ölçüm cihazına dönüştürün. Flicker, CCT, Lux ve CRI ölçümü — tamamen offline.">
+    <link rel="icon" type="image/png" href="images/lida-logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -16,18 +17,19 @@
         }
 
         :root {
-            --bg-primary: #0a0e1a;
-            --bg-secondary: #111827;
-            --bg-card: #1a2035;
-            --accent: #00a8ff;
-            --accent-glow: rgba(0, 168, 255, 0.15);
-            --amber: #ff9500;
-            --text-primary: #f0f4f8;
-            --text-secondary: #94a3b8;
-            --text-muted: #64748b;
-            --border: rgba(255, 255, 255, 0.06);
-            --gradient-accent: linear-gradient(135deg, #00a8ff, #0070cc);
-            --gradient-hero: linear-gradient(180deg, #0a0e1a 0%, #0f1729 50%, #0a0e1a 100%);
+            --bg-primary: #FFFEFC;
+            --bg-secondary: #FFF8F0;
+            --bg-card: #ffffff;
+            --accent: #FFB433;
+            --accent-dark: #D4843E;
+            --accent-glow: rgba(255, 180, 51, 0.1);
+            --amber: #FFB433;
+            --text-primary: #1A1A2E;
+            --text-secondary: #3D5C5C;
+            --text-muted: #8a9a9a;
+            --border: #F0E6D0;
+            --gradient-accent: linear-gradient(135deg, #FFB433, #D4843E);
+            --gradient-hero: linear-gradient(180deg, #FFFEFC 0%, #FFF8F0 50%, #FFFEFC 100%);
         }
 
         html {
@@ -50,7 +52,7 @@
             right: 0;
             z-index: 1000;
             padding: 1rem 2rem;
-            background: rgba(10, 14, 26, 0.85);
+            background: rgba(255, 254, 252, 0.9);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border);
         }
@@ -73,11 +75,15 @@
             gap: 0.5rem;
         }
 
+        .nav-logo-img {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+        }
+
         .nav-logo span {
-            background: var(--gradient-accent);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--text-primary);
+            font-weight: 800;
         }
 
         .nav-links {
@@ -97,7 +103,6 @@
         .nav-links a:hover { color: var(--accent); }
 
         .nav-cta {
-            background: var(--gradient-accent);
             color: #fff !important;
             padding: 0.5rem 1.25rem;
             border-radius: 8px;
@@ -105,9 +110,23 @@
             transition: transform 0.2s, box-shadow 0.2s !important;
         }
 
-        .nav-cta:hover {
+        .nav-cta-android {
+            background: #0d9d58;
+            color: #ffffff !important;
+        }
+
+        .nav-cta-android:hover {
             transform: translateY(-1px);
-            box-shadow: 0 4px 20px rgba(0, 168, 255, 0.3);
+            box-shadow: 0 4px 20px rgba(13, 157, 88, 0.35);
+        }
+
+        .nav-cta-ios {
+            background: #000000;
+        }
+
+        .nav-cta-ios:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         }
 
         .nav-hamburger {
@@ -138,8 +157,8 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(ellipse at 30% 50%, rgba(0, 168, 255, 0.06) 0%, transparent 60%),
-                        radial-gradient(ellipse at 70% 30%, rgba(255, 149, 0, 0.04) 0%, transparent 50%);
+            background: radial-gradient(ellipse at 30% 50%, rgba(255, 180, 51, 0.12) 0%, transparent 60%),
+                        radial-gradient(ellipse at 70% 30%, rgba(212, 132, 62, 0.08) 0%, transparent 50%);
             animation: heroGlow 12s ease-in-out infinite alternate;
         }
 
@@ -166,7 +185,7 @@
             align-items: center;
             gap: 0.5rem;
             background: var(--accent-glow);
-            border: 1px solid rgba(0, 168, 255, 0.2);
+            border: 1px solid rgba(245, 166, 35, 0.2);
             padding: 0.4rem 1rem;
             border-radius: 50px;
             font-size: 0.8rem;
@@ -184,10 +203,7 @@
         }
 
         .hero h1 .highlight {
-            background: var(--gradient-accent);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--accent-dark);
         }
 
         .hero-desc {
@@ -219,9 +235,26 @@
             transition: transform 0.2s, box-shadow 0.2s;
         }
 
+        .btn-android {
+            background: #0d9d58 !important;
+            color: #ffffff !important;
+        }
+
+        .btn-android:hover {
+            box-shadow: 0 8px 30px rgba(13, 157, 88, 0.35) !important;
+        }
+
+        .btn-ios {
+            background: #000000 !important;
+            color: #ffffff !important;
+        }
+
+        .btn-ios:hover {
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3) !important;
+        }
+
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(0, 168, 255, 0.3);
         }
 
         .btn-secondary {
@@ -235,13 +268,24 @@
             text-decoration: none;
             font-weight: 600;
             font-size: 1rem;
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            border: 1px solid var(--border);
             transition: all 0.2s;
         }
 
         .btn-secondary:hover {
             border-color: var(--accent);
             background: var(--accent-glow);
+        }
+
+        .btn-disabled {
+            opacity: 0.5;
+            pointer-events: none;
+            cursor: default;
+        }
+
+        .btn-disabled small {
+            font-size: 0.75rem;
+            opacity: 0.8;
         }
 
         .hero-visual {
@@ -253,12 +297,12 @@
 
         .phone-mockup {
             width: 280px;
-            background: #1a1a2e;
+            background: #1A1A2E;
             border-radius: 36px;
-            border: 3px solid rgba(255, 255, 255, 0.12);
+            border: 3px solid #2a2a40;
             overflow: hidden;
             position: relative;
-            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5), 0 0 60px rgba(0, 168, 255, 0.1);
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.3), 0 0 60px rgba(255, 180, 51, 0.08);
         }
 
         .phone-mockup img {
@@ -290,7 +334,7 @@
             position: absolute;
             width: 350px;
             height: 350px;
-            background: radial-gradient(circle, rgba(0, 168, 255, 0.15) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(255, 180, 51, 0.15) 0%, transparent 70%);
             border-radius: 50%;
             top: 50%;
             left: 50%;
@@ -350,13 +394,14 @@
             border: 1px solid var(--border);
             border-radius: 16px;
             padding: 2rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
             transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
         }
 
         .feature-card:hover {
             transform: translateY(-4px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            border-color: rgba(0, 168, 255, 0.2);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+            border-color: var(--accent);
         }
 
         .feature-icon {
@@ -370,10 +415,10 @@
             margin-bottom: 1.25rem;
         }
 
-        .feature-icon.flicker { background: rgba(255, 149, 0, 0.12); color: var(--amber); }
-        .feature-icon.cct { background: rgba(0, 168, 255, 0.12); color: var(--accent); }
-        .feature-icon.lux { background: rgba(255, 220, 50, 0.12); color: #ffd832; }
-        .feature-icon.cri { background: rgba(120, 255, 150, 0.12); color: #78ff96; }
+        .feature-icon.flicker { background: rgba(255, 180, 51, 0.12); color: #FFB433; }
+        .feature-icon.cct { background: rgba(212, 132, 62, 0.12); color: #D4843E; }
+        .feature-icon.lux { background: rgba(76, 175, 80, 0.12); color: #4caf50; }
+        .feature-icon.cri { background: rgba(255, 152, 0, 0.12); color: #ff9800; }
 
         .feature-card h3 {
             font-size: 1.15rem;
@@ -396,10 +441,10 @@
             margin-top: 0.75rem;
         }
 
-        .feature-tag.ieee { background: rgba(255, 149, 0, 0.1); color: var(--amber); }
-        .feature-tag.kelvin { background: rgba(0, 168, 255, 0.1); color: var(--accent); }
-        .feature-tag.exif { background: rgba(255, 220, 50, 0.1); color: #ffd832; }
-        .feature-tag.score { background: rgba(120, 255, 150, 0.1); color: #78ff96; }
+        .feature-tag.ieee { background: rgba(255, 180, 51, 0.12); color: #D4843E; }
+        .feature-tag.kelvin { background: rgba(212, 132, 62, 0.12); color: #D4843E; }
+        .feature-tag.exif { background: rgba(76, 175, 80, 0.12); color: #4caf50; }
+        .feature-tag.score { background: rgba(255, 152, 0, 0.12); color: #ff9800; }
 
         /* HOW IT WORKS */
         .how-it-works { background: var(--bg-primary); }
@@ -433,8 +478,8 @@
             width: 80px;
             height: 80px;
             border-radius: 50%;
-            background: var(--bg-card);
-            border: 2px solid rgba(0, 168, 255, 0.2);
+            background: var(--bg-secondary);
+            border: 2px solid var(--border);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -473,18 +518,18 @@
 
         .screenshot-item {
             width: 220px;
-            background: #1a1a2e;
-            border: 3px solid rgba(255, 255, 255, 0.1);
+            background: #1A1A2E;
+            border: 3px solid #2a2a40;
             border-radius: 28px;
             overflow: hidden;
             flex-shrink: 0;
             transition: transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
         }
 
         .screenshot-item:hover {
             transform: scale(1.04);
-            box-shadow: 0 15px 40px rgba(0, 168, 255, 0.15);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
         }
 
         .screenshot-item img {
@@ -569,8 +614,8 @@
         }
 
         .pricing-card.popular {
-            border-color: rgba(0, 168, 255, 0.3);
-            box-shadow: 0 0 40px rgba(0, 168, 255, 0.08);
+            border-color: var(--accent);
+            box-shadow: 0 8px 30px rgba(255, 180, 51, 0.12);
         }
 
         .popular-badge {
@@ -619,7 +664,7 @@
             color: var(--text-secondary);
         }
 
-        .pricing-features li i.fa-check { color: #4ade80; font-size: 0.8rem; }
+        .pricing-features li i.fa-check { color: #4caf50; font-size: 0.8rem; }
         .pricing-features li i.fa-xmark { color: var(--text-muted); font-size: 0.8rem; }
 
         .pricing-card .btn-primary,
@@ -708,7 +753,7 @@
                 top: 100%;
                 left: 0;
                 right: 0;
-                background: rgba(10, 14, 26, 0.95);
+                background: rgba(255, 254, 252, 0.98);
                 backdrop-filter: blur(20px);
                 flex-direction: column;
                 padding: 1.5rem 2rem;
@@ -766,13 +811,14 @@
     <!-- NAV -->
     <nav>
         <div class="nav-inner">
-            <a href="#" class="nav-logo"><i class="fas fa-lightbulb"></i> <span>LIDA</span></a>
+            <a href="#" class="nav-logo"><img src="images/lida-logo.png" alt="LIDA" class="nav-logo-img"> <span>LIDA</span></a>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#features">Özellikler</a></li>
                 <li><a href="#how-it-works">Nasıl Çalışır</a></li>
                 <li><a href="#screenshots">Ekran Görüntüleri</a></li>
                 <li><a href="#pricing">Fiyatlandırma</a></li>
-                <li><a href="#" class="nav-cta"><i class="fab fa-google-play"></i> İndir</a></li>
+                <li><a href="https://play.google.com/store/apps/details?id=com.lida" class="nav-cta nav-cta-android"><i class="fab fa-google-play"></i> Google Play</a></li>
+                <li><a href="#" class="nav-cta nav-cta-ios btn-disabled"><i class="fab fa-apple"></i> App Store</a></li>
             </ul>
             <button class="nav-hamburger" id="navToggle" aria-label="Menu">
                 <i class="fas fa-bars"></i>
@@ -794,11 +840,11 @@
                     Flicker, CCT, Lux ve CRI &mdash; tek bir uygulamada, internet gerektirmeden.
                 </p>
                 <div class="hero-buttons">
-                    <a href="#" class="btn-primary">
-                        <i class="fab fa-google-play"></i> Google Play'den İndir
+                    <a href="https://play.google.com/store/apps/details?id=com.lida" class="btn-primary btn-android">
+                        <i class="fab fa-google-play"></i> Google Play
                     </a>
-                    <a href="#features" class="btn-secondary">
-                        <i class="fas fa-arrow-down"></i> Keşfet
+                    <a href="#" class="btn-primary btn-ios btn-disabled">
+                        <i class="fab fa-apple"></i> App Store <small>(Yakında)</small>
                     </a>
                 </div>
             </div>
@@ -927,7 +973,7 @@
                 </div>
             </div>
             <div class="extra-item fade-in">
-                <i class="fas fa-wifi-slash"></i>
+                <i class="fas fa-tower-broadcast"></i>
                 <div>
                     <h4>Tamamen Offline</h4>
                     <p>İnternet bağlantısı gerektirmez. Verileriniz cihazınızda kalır.</p>
@@ -941,7 +987,7 @@
                 </div>
             </div>
             <div class="extra-item fade-in">
-                <i class="fas fa-language"></i>
+                <i class="fas fa-globe"></i>
                 <div>
                     <h4>Çoklu Dil</h4>
                     <p>Türkçe, İngilizce, İspanyolca, Arapça, Almanca, Fransızca, Rusça.</p>
@@ -963,14 +1009,15 @@
                 <div class="price">0 TL</div>
                 <div class="price-note">Sonsuza kadar ücretsiz</div>
                 <ul class="pricing-features">
-                    <li><i class="fas fa-check"></i> Günde 3 ölçüm hakkı</li>
+                    <li><i class="fas fa-check"></i> Sınırsız ölçüm</li>
                     <li><i class="fas fa-check"></i> Tüm ölçüm türleri</li>
+                    <li><i class="fas fa-check"></i> 3 kayıt hakkı</li>
                     <li><i class="fas fa-xmark"></i> Reklam içerir</li>
                     <li><i class="fas fa-xmark"></i> İnternet bağlantısı gerektirir</li>
                     <li><i class="fas fa-xmark"></i> Kalibrasyon</li>
                     <li><i class="fas fa-xmark"></i> Geçmiş ve rapor paylaşımı</li>
                 </ul>
-                <a href="#" class="btn-secondary">Hemen Başla</a>
+                <a href="https://play.google.com/store/apps/details?id=com.lida" class="btn-secondary">Hemen Başla</a>
             </div>
             <div class="pricing-card popular fade-in">
                 <div class="popular-badge">En Popüler</div>
@@ -980,12 +1027,13 @@
                 <ul class="pricing-features">
                     <li><i class="fas fa-check"></i> Sınırsız ölçüm</li>
                     <li><i class="fas fa-check"></i> Tüm ölçüm türleri</li>
+                    <li><i class="fas fa-check"></i> Sınırsız kayıt hakkı</li>
                     <li><i class="fas fa-check"></i> Reklamsız deneyim</li>
                     <li><i class="fas fa-check"></i> Tamamen offline çalışma</li>
                     <li><i class="fas fa-check"></i> Sensör kalibrasyonu</li>
                     <li><i class="fas fa-check"></i> Geçmiş ve rapor paylaşımı</li>
                 </ul>
-                <a href="#" class="btn-primary">Premium'a Yükselt</a>
+                <a href="https://play.google.com/store/apps/details?id=com.lida" class="btn-primary">Premium'a Yükselt</a>
             </div>
         </div>
     </section>
@@ -994,8 +1042,8 @@
     <footer>
         <div class="footer-inner">
             <div class="footer-brand">
-                <i class="fas fa-lightbulb" style="color: var(--accent);"></i>
-                Baykus Studio
+                <img src="images/lida-logo.png" alt="LIDA" style="width: 28px; height: 28px; border-radius: 6px;">
+                Baykuş Studio
                 <span>&bull; LIDA</span>
             </div>
             <ul class="footer-links">
@@ -1004,7 +1052,7 @@
                 <li><a href="mailto:contact@example.com">İletişim</a></li>
             </ul>
             <div class="footer-copy">
-                &copy; 2025 Baykuş Studio. Tüm hakları saklıdır.
+                &copy; 2026 Baykuş Studio. Tüm hakları saklıdır.
             </div>
         </div>
     </footer>

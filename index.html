@@ -5,6 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LIDA — Lighting Inspection & Diagnostic App</title>
     <meta name="description" content="LIDA ile akıllı telefonunuzun kamerasını profesyonel bir ışık ölçüm cihazına dönüştürün. Flicker, CCT, Lux ve CRI ölçümü — tamamen offline.">
+    <meta name="keywords" content="LIDA, ışık ölçüm, flicker, CCT, lux, CRI, aydınlatma, lux metre, renk sıcaklığı, light meter, lighting inspection, IEEE 1789">
+    <meta name="author" content="Baykuş Studio">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#FFB433">
+    <link rel="canonical" href="https://eylikler.github.io/">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="LIDA — Profesyonel Işık Ölçüm Uygulaması">
+    <meta property="og:description" content="Akıllı telefonunuzun kamerasını profesyonel bir ışık ölçüm cihazına dönüştürün. Flicker, CCT, Lux ve CRI ölçümü — tamamen offline.">
+    <meta property="og:image" content="https://eylikler.github.io/images/lida-logo.png">
+    <meta property="og:url" content="https://eylikler.github.io/">
+    <meta property="og:site_name" content="LIDA">
+    <meta property="og:locale" content="tr_TR">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="LIDA — Profesyonel Işık Ölçüm Uygulaması">
+    <meta name="twitter:description" content="Akıllı telefonunuzun kamerasını profesyonel bir ışık ölçüm cihazına dönüştürün. Flicker, CCT, Lux ve CRI ölçümü.">
+    <meta name="twitter:image" content="https://eylikler.github.io/images/lida-logo.png">
+
+    <!-- Apple -->
+    <meta name="apple-mobile-web-app-title" content="LIDA">
+    <link rel="apple-touch-icon" href="images/lida-logo.png">
+
     <link rel="icon" type="image/png" href="images/lida-logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -1079,6 +1104,38 @@
         document.querySelectorAll('.fade-in').forEach(function(el) {
             observer.observe(el);
         });
+    </script>
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "MobileApplication",
+        "name": "LIDA",
+        "description": "Akıllı telefonunuzun kamerasını profesyonel bir ışık ölçüm cihazına dönüştürün. Flicker, CCT, Lux ve CRI ölçümü.",
+        "operatingSystem": "Android",
+        "applicationCategory": "UtilitiesApplication",
+        "offers": [
+            {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "TRY",
+                "description": "Ücretsiz - Sınırsız ölçüm, 3 kayıt hakkı"
+            },
+            {
+                "@type": "Offer",
+                "description": "Premium - Tek seferlik ödeme, sınırsız erişim"
+            }
+        ],
+        "author": {
+            "@type": "Organization",
+            "name": "Baykuş Studio",
+            "url": "https://eylikler.github.io/"
+        },
+        "url": "https://play.google.com/store/apps/details?id=com.lida",
+        "image": "https://eylikler.github.io/images/lida-logo.png",
+        "inLanguage": ["tr", "en", "es", "ar", "de", "fr", "ru"]
+    }
     </script>
 
 </body>

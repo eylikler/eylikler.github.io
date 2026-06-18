@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LIDA — Lighting Inspection & Diagnostic App</title>
-    <meta name="description" content="LIDA ile akıllı telefonunuzun kamerasını profesyonel bir ışık ölçüm cihazına dönüştürün. Flicker, CCT, Lux ve CRI ölçümü — tamamen offline.">
+    <title data-i18n="meta.title">LIDA — Lighting Inspection & Diagnostic App</title>
+    <meta name="description" data-i18n-content="meta.description" content="LIDA ile akıllı telefonunuzun kamerasını profesyonel bir ışık ölçüm cihazına dönüştürün. Flicker, CCT, Lux ve CRI ölçümü — tamamen offline.">
     <meta name="keywords" content="LIDA, ışık ölçüm, flicker, CCT, lux, CRI, aydınlatma, lux metre, renk sıcaklığı, light meter, lighting inspection, IEEE 1789">
     <meta name="author" content="Baykuş Studio">
     <meta name="robots" content="index, follow">
@@ -921,6 +921,104 @@
             font-size: 0.8rem;
         }
 
+        /* LANGUAGE SELECTOR */
+        .lang-switcher {
+            position: relative;
+        }
+
+        .lang-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            padding: 0.45rem 0.75rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            font-family: inherit;
+            cursor: pointer;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .lang-button:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .lang-button .fa-chevron-down {
+            font-size: 0.65rem;
+            transition: transform 0.2s;
+        }
+
+        .lang-switcher.open .fa-chevron-down {
+            transform: rotate(180deg);
+        }
+
+        .lang-menu {
+            position: absolute;
+            top: calc(100% + 0.5rem);
+            right: 0;
+            min-width: 180px;
+            max-height: 320px;
+            overflow-y: auto;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
+            padding: 0.4rem;
+            display: none;
+            z-index: 1100;
+        }
+
+        .lang-switcher.open .lang-menu {
+            display: block;
+        }
+
+        .lang-option {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            width: 100%;
+            text-align: left;
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            padding: 0.55rem 0.7rem;
+            border-radius: 8px;
+            font-size: 0.88rem;
+            font-family: inherit;
+            cursor: pointer;
+            transition: background 0.15s, color 0.15s;
+        }
+
+        .lang-option:hover {
+            background: var(--accent-glow);
+            color: var(--text-primary);
+        }
+
+        .lang-option.active {
+            color: var(--accent-dark);
+            font-weight: 600;
+            background: var(--accent-glow);
+        }
+
+        .lang-option .lang-native {
+            color: var(--text-muted);
+            font-size: 0.78rem;
+            margin-left: auto;
+        }
+
+        /* RTL support */
+        html[dir="rtl"] body { direction: rtl; }
+        html[dir="rtl"] .lang-menu { right: auto; left: 0; }
+        html[dir="rtl"] .lang-option { text-align: right; }
+        html[dir="rtl"] .lang-option .lang-native { margin-left: 0; margin-right: auto; }
+        html[dir="rtl"] .fi-highlights li,
+        html[dir="rtl"] .pricing-features li,
+        html[dir="rtl"] .extra-item { text-align: right; }
+
         /* ANIMATIONS */
         .fade-in {
             opacity: 0;
@@ -959,6 +1057,8 @@
 
             .nav-links.open { display: flex; }
             .nav-hamburger { display: block; }
+            .lang-button { padding: 0.4rem 0.6rem; }
+            .lang-menu { max-height: 60vh; }
 
             .hero-inner {
                 grid-template-columns: 1fr;
@@ -1030,14 +1130,22 @@
         <div class="nav-inner">
             <a href="#" class="nav-logo"><img src="images/lida-logo.png" alt="LIDA" class="nav-logo-img"> <span>LIDA</span></a>
             <ul class="nav-links" id="navLinks">
-                <li><a href="#features">Özellikler</a></li>
-                <li><a href="#full-inspection">Tam Denetim</a></li>
-                <li><a href="#how-it-works">Nasıl Çalışır</a></li>
-                <li><a href="#screenshots">Ekran Görüntüleri</a></li>
-                <li><a href="#pricing">Fiyatlandırma</a></li>
+                <li><a href="#features" data-i18n="nav.features">Özellikler</a></li>
+                <li><a href="#full-inspection" data-i18n="nav.fullInspection">Tam Denetim</a></li>
+                <li><a href="#how-it-works" data-i18n="nav.howItWorks">Nasıl Çalışır</a></li>
+                <li><a href="#screenshots" data-i18n="nav.screenshots">Ekran Görüntüleri</a></li>
+                <li><a href="#pricing" data-i18n="nav.pricing">Fiyatlandırma</a></li>
                 <li><a href="https://play.google.com/store/apps/details?id=com.lida" class="nav-cta nav-cta-android"><i class="fab fa-google-play"></i> Google Play</a></li>
                 <li><a href="https://apps.apple.com/us/app/lida-meter/id6760695634" class="nav-cta nav-cta-ios"><i class="fab fa-apple"></i> App Store</a></li>
             </ul>
+            <div class="lang-switcher" id="langSwitcher">
+                <button class="lang-button" id="langButton" aria-label="Language" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-globe"></i>
+                    <span id="langCurrent">TR</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="lang-menu" id="langMenu" role="menu"></div>
+            </div>
             <button class="nav-hamburger" id="navToggle" aria-label="Menu">
                 <i class="fas fa-bars"></i>
             </button>
@@ -1050,10 +1158,10 @@
             <div class="hero-content fade-in">
                 <div class="hero-badge">
                     <i class="fas fa-circle-check"></i>
-                    Tamamen Offline &bull; IEEE 1789 Uyumlu
+                    <span data-i18n="hero.badge">Tamamen Offline &bull; IEEE 1789 Uyumlu</span>
                 </div>
-                <h1>Profesyonel Işık Ölçümü, <span class="highlight">Cebinizde</span></h1>
-                <p class="hero-desc">
+                <h1 data-i18n="hero.title">Profesyonel Işık Ölçümü, <span class="highlight">Cebinizde</span></h1>
+                <p class="hero-desc" data-i18n="hero.desc">
                     LIDA, akıllı telefonunuzun kamerasını profesyonel bir ışık ölçüm cihazına dönüştürür.
                     Flicker, CCT, Lux ve CRI &mdash; tek bir uygulamada, internet gerektirmeden.
                 </p>
@@ -1069,7 +1177,7 @@
             <div class="hero-visual fade-in">
                 <div class="phone-glow"></div>
                 <div class="phone-mockup">
-                    <img src="images/screenshot-home.jpg" alt="LIDA Ana Ekran">
+                    <img src="images/screenshot-home.jpg" alt="LIDA Ana Ekran" data-i18n-alt="hero.imgAlt">
                 </div>
             </div>
         </div>
@@ -1078,34 +1186,34 @@
     <!-- FEATURES -->
     <section class="features" id="features">
         <div class="section-header fade-in">
-            <span class="section-label">Özellikler</span>
-            <h2>4 Profesyonel Ölçüm, Tek Uygulama</h2>
-            <p>Aydınlatma kalitesini değerlendirmek için ihtiyacınız olan her şey, telefonunuzda.</p>
+            <span class="section-label" data-i18n="features.label">Özellikler</span>
+            <h2 data-i18n="features.title">4 Profesyonel Ölçüm, Tek Uygulama</h2>
+            <p data-i18n="features.subtitle">Aydınlatma kalitesini değerlendirmek için ihtiyacınız olan her şey, telefonunuzda.</p>
         </div>
         <div class="features-grid">
             <div class="feature-card fade-in">
                 <div class="feature-icon flicker"><i class="fas fa-bolt"></i></div>
-                <h3>Flicker Algılama</h3>
-                <p>Rolling shutter FFT analizi ile ışık titreşimini tespit edin. Frekans, yüzde ve Flicker Index ölçümü.</p>
+                <h3 data-i18n="features.flicker.title">Flicker Algılama</h3>
+                <p data-i18n="features.flicker.desc">Rolling shutter FFT analizi ile ışık titreşimini tespit edin. Frekans, yüzde ve Flicker Index ölçümü.</p>
                 <span class="feature-tag ieee">IEEE 1789-2015</span>
             </div>
             <div class="feature-card fade-in">
                 <div class="feature-icon cct"><i class="fas fa-temperature-half"></i></div>
-                <h3>CCT &mdash; Renk Sıcaklığı</h3>
-                <p>Işık kaynağının Kelvin cinsinden renk sıcaklığını ölçün. Sıcak beyaz, nötr veya gün ışığı.</p>
+                <h3 data-i18n="features.cct.title">CCT &mdash; Renk Sıcaklığı</h3>
+                <p data-i18n="features.cct.desc">Işık kaynağının Kelvin cinsinden renk sıcaklığını ölçün. Sıcak beyaz, nötr veya gün ışığı.</p>
                 <span class="feature-tag kelvin">1800K &ndash; 20000K+</span>
             </div>
             <div class="feature-card fade-in">
                 <div class="feature-icon lux"><i class="fas fa-sun"></i></div>
-                <h3>Lux &mdash; Aydınlık Seviyesi</h3>
-                <p>Kamera EXIF verileri üzerinden ortamınızdaki aydınlatma şiddetini hesaplayın.</p>
-                <span class="feature-tag exif">EXIF Analizi</span>
+                <h3 data-i18n="features.lux.title">Lux &mdash; Aydınlık Seviyesi</h3>
+                <p data-i18n="features.lux.desc">Kamera EXIF verileri üzerinden ortamınızdaki aydınlatma şiddetini hesaplayın.</p>
+                <span class="feature-tag exif" data-i18n="features.lux.tag">EXIF Analizi</span>
             </div>
             <div class="feature-card fade-in">
                 <div class="feature-icon cri"><i class="fas fa-palette"></i></div>
-                <h3>CRI &mdash; Renk İşleme İndeksi</h3>
-                <p>Işığın renkleri ne kadar doğal gösterdiğini 0-100 ölçeğinde değerlendirin.</p>
-                <span class="feature-tag score">0 &ndash; 100 Puan</span>
+                <h3 data-i18n="features.cri.title">CRI &mdash; Renk İşleme İndeksi</h3>
+                <p data-i18n="features.cri.desc">Işığın renkleri ne kadar doğal gösterdiğini 0-100 ölçeğinde değerlendirin.</p>
+                <span class="feature-tag score" data-i18n="features.cri.tag">0 &ndash; 100 Puan</span>
             </div>
         </div>
     </section>
@@ -1117,73 +1225,73 @@
                 <div class="fi-content fade-in">
                     <div class="hero-badge">
                         <i class="fas fa-star"></i>
-                        Yeni Özellik &bull; Kapsamlı Denetim
+                        <span data-i18n="fi.badge">Yeni Özellik &bull; Kapsamlı Denetim</span>
                     </div>
-                    <h2>Tek akışta <span class="highlight">profesyonel denetim raporu.</span></h2>
-                    <p class="fi-desc">
+                    <h2 data-i18n="fi.title">Tek akışta <span class="highlight">profesyonel denetim raporu.</span></h2>
+                    <p class="fi-desc" data-i18n="fi.desc">
                         <strong>Tam Denetim</strong> modu, aydınlatma denetimini 4 adımlık rehberli bir akışa dönüştürür.
                         Flicker, Lux, CCT ve CRI ölçümlerinin dördünü tek oturumda tamamlar; sonucu
                         EN 12464-1 ve IEEE 1789-2015 standartlarıyla otomatik karşılaştırıp
                         imzalı PDF rapor oluşturur.
                     </p>
                     <ul class="fi-highlights">
-                        <li><i class="fas fa-check-circle"></i> Operatör, lokasyon, GPS ve saha tipi tek formda kayıt altına alınır</li>
-                        <li><i class="fas fa-check-circle"></i> Her adımda ölçüm kilitlenir; tekrar çekim ve yanlışlık riski kalmaz</li>
-                        <li><i class="fas fa-check-circle"></i> Otomatik GEÇTİ / KALDI kararı ve standartlara atıflı öneri listesi</li>
-                        <li><i class="fas fa-check-circle"></i> Paylaşılabilir, arşivlenebilir profesyonel PDF çıktı</li>
+                        <li><i class="fas fa-check-circle"></i> <span data-i18n="fi.highlight1">Operatör, lokasyon, GPS ve saha tipi tek formda kayıt altına alınır</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span data-i18n="fi.highlight2">Her adımda ölçüm kilitlenir; tekrar çekim ve yanlışlık riski kalmaz</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span data-i18n="fi.highlight3">Otomatik GEÇTİ / KALDI kararı ve standartlara atıflı öneri listesi</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span data-i18n="fi.highlight4">Paylaşılabilir, arşivlenebilir profesyonel PDF çıktı</span></li>
                     </ul>
                 </div>
                 <div class="fi-visual fade-in">
                     <div class="phone-glow"></div>
                     <div class="phone-mockup">
-                        <img src="images/screenshot-fullinspection-summary.jpg" alt="Tam Denetim özet raporu">
+                        <img src="images/screenshot-fullinspection-summary.jpg" alt="Tam Denetim özet raporu" data-i18n-alt="fi.imgAlt">
                     </div>
                 </div>
             </div>
 
             <div class="fi-flow fade-in">
-                <h3 class="fi-flow-title">4 Adımda Denetim Akışı</h3>
-                <p class="fi-flow-subtitle">Hazırlıktan standart uyumlu rapora kadar tek ekranda.</p>
+                <h3 class="fi-flow-title" data-i18n="fi.flowTitle">4 Adımda Denetim Akışı</h3>
+                <p class="fi-flow-subtitle" data-i18n="fi.flowSubtitle">Hazırlıktan standart uyumlu rapora kadar tek ekranda.</p>
                 <div class="fi-flow-grid">
                     <div class="fi-flow-step">
                         <div class="fi-flow-phone">
-                            <img src="images/screenshot-fullinspection-setup.jpg" alt="Denetim hazırlık formu">
+                            <img src="images/screenshot-fullinspection-setup.jpg" alt="Denetim hazırlık formu" data-i18n-alt="fi.step0.alt">
                         </div>
-                        <span class="fi-flow-badge">Hazırlık</span>
-                        <h4>Denetim Bilgileri</h4>
-                        <p>Operatör, ölçüm yeri, saha tipi, GPS koordinatı ve notlar.</p>
+                        <span class="fi-flow-badge" data-i18n="fi.step0.badge">Hazırlık</span>
+                        <h4 data-i18n="fi.step0.title">Denetim Bilgileri</h4>
+                        <p data-i18n="fi.step0.desc">Operatör, ölçüm yeri, saha tipi, GPS koordinatı ve notlar.</p>
                     </div>
                     <div class="fi-flow-step">
                         <div class="fi-flow-phone">
-                            <img src="images/screenshot-fullinspection-flicker.jpg" alt="Flicker ölçümü">
+                            <img src="images/screenshot-fullinspection-flicker.jpg" alt="Flicker ölçümü" data-i18n-alt="fi.step1.alt">
                         </div>
-                        <span class="fi-flow-badge">Adım 1</span>
-                        <h4>Flicker Ölçümü</h4>
-                        <p>Rolling shutter FFT ile titreşim frekansı ve yüzdesi.</p>
+                        <span class="fi-flow-badge" data-i18n="fi.step1.badge">Adım 1</span>
+                        <h4 data-i18n="fi.step1.title">Flicker Ölçümü</h4>
+                        <p data-i18n="fi.step1.desc">Rolling shutter FFT ile titreşim frekansı ve yüzdesi.</p>
                     </div>
                     <div class="fi-flow-step">
                         <div class="fi-flow-phone">
-                            <img src="images/screenshot-fullinspection-lux.jpg" alt="Lux ölçümü">
+                            <img src="images/screenshot-fullinspection-lux.jpg" alt="Lux ölçümü" data-i18n-alt="fi.step2.alt">
                         </div>
-                        <span class="fi-flow-badge">Adım 2</span>
-                        <h4>Aydınlık Düzeyi</h4>
-                        <p>EXIF tabanlı aydınlık (lux) ölçümü ve sensör kontrolü.</p>
+                        <span class="fi-flow-badge" data-i18n="fi.step2.badge">Adım 2</span>
+                        <h4 data-i18n="fi.step2.title">Aydınlık Düzeyi</h4>
+                        <p data-i18n="fi.step2.desc">EXIF tabanlı aydınlık (lux) ölçümü ve sensör kontrolü.</p>
                     </div>
                     <div class="fi-flow-step">
                         <div class="fi-flow-phone">
-                            <img src="images/screenshot-fullinspection-cct.jpg" alt="CCT ve CRI ölçümü">
+                            <img src="images/screenshot-fullinspection-cct.jpg" alt="CCT ve CRI ölçümü" data-i18n-alt="fi.step3.alt">
                         </div>
-                        <span class="fi-flow-badge">Adım 3</span>
-                        <h4>CCT &amp; CRI</h4>
-                        <p>Renk sıcaklığı (Kelvin) ve renk işleme indeksi (Ra).</p>
+                        <span class="fi-flow-badge" data-i18n="fi.step3.badge">Adım 3</span>
+                        <h4 data-i18n="fi.step3.title">CCT &amp; CRI</h4>
+                        <p data-i18n="fi.step3.desc">Renk sıcaklığı (Kelvin) ve renk işleme indeksi (Ra).</p>
                     </div>
                     <div class="fi-flow-step">
                         <div class="fi-flow-phone">
-                            <img src="images/screenshot-fullinspection-summary.jpg" alt="Özet ve öneriler">
+                            <img src="images/screenshot-fullinspection-summary.jpg" alt="Özet ve öneriler" data-i18n-alt="fi.step4.alt">
                         </div>
-                        <span class="fi-flow-badge">Adım 4</span>
-                        <h4>Özet &amp; Rapor</h4>
-                        <p>Standart karşılaştırması, öneriler ve PDF çıktısı.</p>
+                        <span class="fi-flow-badge" data-i18n="fi.step4.badge">Adım 4</span>
+                        <h4 data-i18n="fi.step4.title">Özet &amp; Rapor</h4>
+                        <p data-i18n="fi.step4.desc">Standart karşılaştırması, öneriler ve PDF çıktısı.</p>
                     </div>
                 </div>
             </div>
@@ -1193,25 +1301,25 @@
     <!-- HOW IT WORKS -->
     <section class="how-it-works" id="how-it-works">
         <div class="section-header fade-in">
-            <span class="section-label">Nasıl Çalışır?</span>
-            <h2>3 Basit Adım</h2>
-            <p>Karmaşık cihazlara gerek yok. Kameranızı açın ve ölçüme başlayın.</p>
+            <span class="section-label" data-i18n="how.label">Nasıl Çalışır?</span>
+            <h2 data-i18n="how.title">3 Basit Adım</h2>
+            <p data-i18n="how.subtitle">Karmaşık cihazlara gerek yok. Kameranızı açın ve ölçüme başlayın.</p>
         </div>
         <div class="steps">
             <div class="step fade-in">
                 <div class="step-number"><i class="fas fa-camera"></i></div>
-                <h3>Kamerayı Açın</h3>
-                <p>Işık kaynağını kameranızla hedefleyin. LIDA otomatik olarak hazırlanıyor.</p>
+                <h3 data-i18n="how.step1.title">Kamerayı Açın</h3>
+                <p data-i18n="how.step1.desc">Işık kaynağını kameranızla hedefleyin. LIDA otomatik olarak hazırlanıyor.</p>
             </div>
             <div class="step fade-in">
                 <div class="step-number"><i class="fas fa-sliders"></i></div>
-                <h3>Ölçümü Seçin</h3>
-                <p>Flicker, CCT, Lux veya CRI &mdash; istediğiniz ölçüm türünü seçin veya hepsini birden çalıştırın.</p>
+                <h3 data-i18n="how.step2.title">Ölçümü Seçin</h3>
+                <p data-i18n="how.step2.desc">Flicker, CCT, Lux veya CRI &mdash; istediğiniz ölçüm türünü seçin veya hepsini birden çalıştırın.</p>
             </div>
             <div class="step fade-in">
                 <div class="step-number"><i class="fas fa-chart-line"></i></div>
-                <h3>Sonucu Alın</h3>
-                <p>Anlık sonuçları görün, geçmişe kaydedin ve profesyonel raporlar olarak paylaşın.</p>
+                <h3 data-i18n="how.step3.title">Sonucu Alın</h3>
+                <p data-i18n="how.step3.desc">Anlık sonuçları görün, geçmişe kaydedin ve profesyonel raporlar olarak paylaşın.</p>
             </div>
         </div>
     </section>
@@ -1219,25 +1327,25 @@
     <!-- SCREENSHOTS -->
     <section class="screenshots" id="screenshots">
         <div class="section-header fade-in">
-            <span class="section-label">Önizleme</span>
-            <h2>Uygulamadan Kareler</h2>
-            <p>LIDA'nın temiz ve kullanıcı dostu arayüzüne göz atın.</p>
+            <span class="section-label" data-i18n="shots.label">Önizleme</span>
+            <h2 data-i18n="shots.title">Uygulamadan Kareler</h2>
+            <p data-i18n="shots.subtitle">LIDA'nın temiz ve kullanıcı dostu arayüzüne göz atın.</p>
         </div>
         <div class="screenshots-track fade-in">
             <div class="screenshot-item">
-                <img src="images/screenshot-home.jpg" alt="Ana Ekran">
+                <img src="images/screenshot-home.jpg" alt="Ana Ekran" data-i18n-alt="shots.home">
             </div>
             <div class="screenshot-item">
-                <img src="images/screenshot-flicker.png" alt="Flicker Ölçümü">
+                <img src="images/screenshot-flicker.png" alt="Flicker Ölçümü" data-i18n-alt="shots.flicker">
             </div>
             <div class="screenshot-item">
-                <img src="images/screenshot-cct.png" alt="CCT Ölçümü">
+                <img src="images/screenshot-cct.png" alt="CCT Ölçümü" data-i18n-alt="shots.cct">
             </div>
             <div class="screenshot-item">
-                <img src="images/screenshot-lux.png" alt="Lux Ölçümü">
+                <img src="images/screenshot-lux.png" alt="Lux Ölçümü" data-i18n-alt="shots.lux">
             </div>
             <div class="screenshot-item">
-                <img src="images/screenshot-cri.png" alt="CRI Ölçümü">
+                <img src="images/screenshot-cri.png" alt="CRI Ölçümü" data-i18n-alt="shots.cri">
             </div>
         </div>
     </section>
@@ -1245,50 +1353,50 @@
     <!-- EXTRAS -->
     <section class="extras" id="extras">
         <div class="section-header fade-in">
-            <span class="section-label">Dahası da Var</span>
-            <h2>Profesyonellerin İhtiyaçları İçin</h2>
+            <span class="section-label" data-i18n="extras.label">Dahası da Var</span>
+            <h2 data-i18n="extras.title">Profesyonellerin İhtiyaçları İçin</h2>
         </div>
         <div class="extras-grid">
             <div class="extra-item fade-in">
                 <i class="fas fa-clock-rotate-left"></i>
                 <div>
-                    <h4>Ölçüm Geçmişi</h4>
-                    <p>Tüm ölçümlerinizi kaydedin ve sonra tekrar inceleyin.</p>
+                    <h4 data-i18n="extras.history.title">Ölçüm Geçmişi</h4>
+                    <p data-i18n="extras.history.desc">Tüm ölçümlerinizi kaydedin ve sonra tekrar inceleyin.</p>
                 </div>
             </div>
             <div class="extra-item fade-in">
                 <i class="fas fa-crosshairs"></i>
                 <div>
-                    <h4>Sensör Kalibrasyonu</h4>
-                    <p>3 noktalı kalibrasyon ile ölçüm doğruluğunu artırın.</p>
+                    <h4 data-i18n="extras.calibration.title">Sensör Kalibrasyonu</h4>
+                    <p data-i18n="extras.calibration.desc">3 noktalı kalibrasyon ile ölçüm doğruluğunu artırın.</p>
                 </div>
             </div>
             <div class="extra-item fade-in">
                 <i class="fas fa-share-nodes"></i>
                 <div>
-                    <h4>Rapor Paylaşımı</h4>
-                    <p>Sonuçları profesyonel rapor olarak paylaşın.</p>
+                    <h4 data-i18n="extras.share.title">Rapor Paylaşımı</h4>
+                    <p data-i18n="extras.share.desc">Sonuçları profesyonel rapor olarak paylaşın.</p>
                 </div>
             </div>
             <div class="extra-item fade-in">
                 <i class="fas fa-tower-broadcast"></i>
                 <div>
-                    <h4>Tamamen Offline</h4>
-                    <p>İnternet bağlantısı gerektirmez. Verileriniz cihazınızda kalır.</p>
+                    <h4 data-i18n="extras.offline.title">Tamamen Offline</h4>
+                    <p data-i18n="extras.offline.desc">İnternet bağlantısı gerektirmez. Verileriniz cihazınızda kalır.</p>
                 </div>
             </div>
             <div class="extra-item fade-in">
                 <i class="fas fa-globe"></i>
                 <div>
-                    <h4>Çoklu Dil</h4>
-                    <p>Türkçe, İngilizce, İspanyolca, Arapça, Almanca, Fransızca, Rusça, Japonca, Çince, Korece, Portekizce, Hintçe, İtalyanca.</p>
+                    <h4 data-i18n="extras.multilang.title">Çoklu Dil</h4>
+                    <p data-i18n="extras.multilang.desc">Türkçe, İngilizce, İspanyolca, Arapça, Almanca, Fransızca, Rusça, Japonca, Çince, Korece, Portekizce, Hintçe, İtalyanca.</p>
                 </div>
             </div>
             <div class="extra-item fade-in">
                 <i class="fas fa-comment-dots"></i>
                 <div>
-                    <h4>Geri Bildirim</h4>
-                    <p>Uygulama içinden anonim olarak görüş ve sorun bildirin; hesap gerektirmez.</p>
+                    <h4 data-i18n="extras.feedback.title">Geri Bildirim</h4>
+                    <p data-i18n="extras.feedback.desc">Uygulama içinden anonim olarak görüş ve sorun bildirin; hesap gerektirmez.</p>
                 </div>
             </div>
         </div>
@@ -1297,41 +1405,41 @@
     <!-- PRICING -->
     <section class="pricing" id="pricing">
         <div class="section-header fade-in">
-            <span class="section-label">Fiyatlandırma</span>
-            <h2>Basit ve Şeffaf</h2>
-            <p>Abonelik yok. Tek seferlik ödeme ile sınırsız erişim.</p>
+            <span class="section-label" data-i18n="pricing.label">Fiyatlandırma</span>
+            <h2 data-i18n="pricing.title">Basit ve Şeffaf</h2>
+            <p data-i18n="pricing.subtitle">Abonelik yok. Tek seferlik ödeme ile sınırsız erişim.</p>
         </div>
         <div class="pricing-cards">
             <div class="pricing-card fade-in">
-                <h3>Ücretsiz</h3>
-                <div class="price">0 TL</div>
-                <div class="price-note">Sonsuza kadar ücretsiz</div>
+                <h3 data-i18n="pricing.free.title">Ücretsiz</h3>
+                <div class="price" data-i18n="pricing.free.price">0 TL</div>
+                <div class="price-note" data-i18n="pricing.free.note">Sonsuza kadar ücretsiz</div>
                 <ul class="pricing-features">
-                    <li><i class="fas fa-check"></i> Tüm ölçüm türleri (Flicker, CCT, Lux, CRI)</li>
-                    <li><i class="fas fa-check"></i> 3 ölçüm kaydı</li>
-                    <li><i class="fas fa-check"></i> 1 Tam Denetim denemesi</li>
-                    <li><i class="fas fa-check"></i> Filigranlı PDF raporu</li>
-                    <li><i class="fas fa-check"></i> Uygulama içi geri bildirim</li>
-                    <li><i class="fas fa-xmark"></i> Reklam içerir</li>
-                    <li><i class="fas fa-xmark"></i> Sensör kalibrasyonu</li>
+                    <li><i class="fas fa-check"></i> <span data-i18n="pricing.free.f1">Tüm ölçüm türleri (Flicker, CCT, Lux, CRI)</span></li>
+                    <li><i class="fas fa-check"></i> <span data-i18n="pricing.free.f2">3 ölçüm kaydı</span></li>
+                    <li><i class="fas fa-check"></i> <span data-i18n="pricing.free.f3">1 Tam Denetim denemesi</span></li>
+                    <li><i class="fas fa-check"></i> <span data-i18n="pricing.free.f4">Filigranlı PDF raporu</span></li>
+                    <li><i class="fas fa-check"></i> <span data-i18n="pricing.free.f5">Uygulama içi geri bildirim</span></li>
+                    <li><i class="fas fa-xmark"></i> <span data-i18n="pricing.free.f6">Reklam içerir</span></li>
+                    <li><i class="fas fa-xmark"></i> <span data-i18n="pricing.free.f7">Sensör kalibrasyonu</span></li>
                 </ul>
-                <a href="https://play.google.com/store/apps/details?id=com.lida" class="btn-secondary">Hemen Başla</a>
+                <a href="https://play.google.com/store/apps/details?id=com.lida" class="btn-secondary" data-i18n="pricing.free.cta">Hemen Başla</a>
             </div>
             <div class="pricing-card popular fade-in">
-                <div class="popular-badge">En Popüler</div>
-                <h3>Premium</h3>
-                <div class="price">Tek Seferlik</div>
-                <div class="price-note">Ömür boyu erişim &bull; Abonelik yok</div>
+                <div class="popular-badge" data-i18n="pricing.popular">En Popüler</div>
+                <h3 data-i18n="pricing.premium.title">Premium</h3>
+                <div class="price" data-i18n="pricing.premium.price">Tek Seferlik</div>
+                <div class="price-note" data-i18n="pricing.premium.note">Ömür boyu erişim &bull; Abonelik yok</div>
                 <ul class="pricing-features">
-                    <li><i class="fas fa-check"></i> Sınırsız Tam Denetim raporu</li>
-                    <li><i class="fas fa-check"></i> Filigransız profesyonel PDF</li>
-                    <li><i class="fas fa-check"></i> Sınırsız ölçüm kaydı</li>
-                    <li><i class="fas fa-check"></i> Reklamsız deneyim</li>
-                    <li><i class="fas fa-check"></i> Tamamen offline çalışma</li>
-                    <li><i class="fas fa-check"></i> Sensör kalibrasyonu</li>
-                    <li><i class="fas fa-check"></i> Geçmiş ve rapor paylaşımı</li>
+                    <li><i class="fas fa-check"></i> <span data-i18n="pricing.premium.f1">Sınırsız Tam Denetim raporu</span></li>
+                    <li><i class="fas fa-check"></i> <span data-i18n="pricing.premium.f2">Filigransız profesyonel PDF</span></li>
+                    <li><i class="fas fa-check"></i> <span data-i18n="pricing.premium.f3">Sınırsız ölçüm kaydı</span></li>
+                    <li><i class="fas fa-check"></i> <span data-i18n="pricing.premium.f4">Reklamsız deneyim</span></li>
+                    <li><i class="fas fa-check"></i> <span data-i18n="pricing.premium.f5">Tamamen offline çalışma</span></li>
+                    <li><i class="fas fa-check"></i> <span data-i18n="pricing.premium.f6">Sensör kalibrasyonu</span></li>
+                    <li><i class="fas fa-check"></i> <span data-i18n="pricing.premium.f7">Geçmiş ve rapor paylaşımı</span></li>
                 </ul>
-                <a href="https://play.google.com/store/apps/details?id=com.lida" class="btn-primary">Premium'a Yükselt</a>
+                <a href="https://play.google.com/store/apps/details?id=com.lida" class="btn-primary" data-i18n="pricing.premium.cta">Premium'a Yükselt</a>
             </div>
         </div>
     </section>
@@ -1345,11 +1453,11 @@
                 <span>&bull; LIDA</span>
             </div>
             <ul class="footer-links">
-                <li><a href="https://gist.github.com/eylikler/fb238651fe8fa4c3343497be1da59bb5" target="_blank">Gizlilik Politikası</a></li>
-                <li><a href="https://gist.github.com/eylikler/fb238651fe8fa4c3343497be1da59bb5" target="_blank">Kullanım Şartları</a></li>
-                <li><a href="mailto:studiobaykus@gmail.com">İletişim</a></li>
+                <li><a href="https://gist.github.com/eylikler/fb238651fe8fa4c3343497be1da59bb5" target="_blank" data-i18n="footer.privacy">Gizlilik Politikası</a></li>
+                <li><a href="https://gist.github.com/eylikler/fb238651fe8fa4c3343497be1da59bb5" target="_blank" data-i18n="footer.terms">Kullanım Şartları</a></li>
+                <li><a href="mailto:studiobaykus@gmail.com" data-i18n="footer.contact">İletişim</a></li>
             </ul>
-            <div class="footer-copy">
+            <div class="footer-copy" data-i18n="footer.copy">
                 &copy; 2026 Baykuş Studio. Tüm hakları saklıdır.
             </div>
         </div>
@@ -1407,9 +1515,12 @@
         },
         "url": "https://eylikler.github.io/",
         "image": "https://eylikler.github.io/images/lida-logo.png",
-        "inLanguage": ["tr", "en", "es", "ar", "de", "fr", "ru"]
+        "inLanguage": ["tr", "en", "es", "ar", "de", "fr", "ru", "ja", "zh", "ko", "pt-BR", "hi", "it"]
     }
     </script>
+
+    <!-- Çoklu dil desteği -->
+    <script src="i18n.js"></script>
 
 </body>
 </html>
